@@ -1,16 +1,1 @@
-{
-  "extends": [
-    "development"
-  ],
-  "hints": {
-    "css-prefix-order": "off",
-    "compat-api/css": "off",
-    "button-type": "off",
-    "axe/name-role-value": [
-      "default",
-      {
-        "button-name": "off"
-      }
-    ]
-  }
-}
+
