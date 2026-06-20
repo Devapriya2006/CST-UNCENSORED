@@ -80,7 +80,7 @@ const classmates = [
 // ================================================================
 //  🔐 ALBUM PASSWORD — Change this to whatever you want!
 // ================================================================
-const ALBUM_PASSWORD = "cst2026";
+const ALBUM_PASSWORD = "";
 // ================================================================
 
 const MAX_PHOTOS_PER_UPLOAD = 500;
