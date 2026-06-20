@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CST UNCENSORED | Digital Memory Album</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content glass-card">
+            <h1 class="hero-title">CST UNCENSORED</h1>
+            <p class="hero-subtitle">A collection of memories, friendships, and unforgettable moments.</p>
+            <div class="scroll-indicator" onclick="document.getElementById('members').scrollIntoView({behavior: 'smooth'})">
+                <span>Explore Memories</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container glass-card">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search classmates by name...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="members-section" id="members">
+        <h2 class="section-title">Our Squad</h2>
+        <div class="members-grid" id="membersGrid"></div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map-section">
+        <h2 class="section-title">📍 Where Are We?</h2>
+        <div class="map-container glass-card">
+            <div id="map"></div>
+        </div>
+        <div class="location-legend" id="locationLegend"></div>
+    </section>
+
+    <!-- Photo Album Section -->
+    <section class="album-section" id="album">
+        <h2 class="section-title">📸 Memory Album</h2>
+
+        <!-- Upload Bar -->
+        <div class="album-controls glass-card">
+            <button class="btn-upload" id="openUploadModal">
+                <i class="fas fa-camera-retro"></i> Add Photo
+            </button>
+            <span class="album-count" id="albumCount">0 photos</span>
+        </div>
+
+        <!-- Photo Grid -->
+        <div class="album-grid" id="albumGrid">
+            <div class="album-empty" id="albumEmpty">
+                <i class="fas fa-images"></i>
+                <p>No photos yet. Be the first to add a memory!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Modal -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal glass-card">
+            <button class="modal-close" id="closeUploadModal"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-lock"></i> Secure Upload</h3>
+
+            <div class="modal-step" id="stepPassword">
+                <p class="modal-desc">Enter the album password to add photos.</p>
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="albumPassword" placeholder="Album password..." autocomplete="off">
+                    <button class="btn-toggle-pw" id="togglePw" title="Show/hide password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <button class="btn-primary" id="verifyPassword">Unlock <i class="fas fa-unlock"></i></button>
+                <p class="error-msg" id="pwError"></p>
+            </div>
+
+            <div class="modal-step hidden" id="stepUpload">
+                <p class="modal-desc">Choose photos from your device.</p>
+                <div class="file-drop-area" id="fileDropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop photos here</p>
+                    <span>or</span>
+                    <label class="btn-secondary" for="fileInput">Browse Files</label>
+                    <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                </div>
+                <div class="caption-area">
+                    <input type="text" id="photoCaption" placeholder="Add a caption... (optional)" maxlength="80">
+                </div>
+                <div class="preview-strip" id="previewStrip"></div>
+                <button class="btn-primary" id="confirmUpload">Upload Photos <i class="fas fa-upload"></i></button>
+                <p class="error-msg" id="uploadError"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal glass-card modal-sm">
+            <h3 class="modal-title"><i class="fas fa-trash"></i> Delete Photo?</h3>
+            <p class="modal-desc">This will permanently remove the photo. Enter the password to confirm.</p>
+            <div class="input-group">
+                <i class="fas fa-key"></i>
+                <input type="password" id="deletePassword" placeholder="Album password..." autocomplete="off">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-danger" id="confirmDelete">Delete</button>
+                <button class="btn-ghost" id="cancelDelete">Cancel</button>
+            </div>
+            <p class="error-msg" id="deleteError"></p>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-inner">
+            <img id="lightboxImg" src="" alt="Lightbox image">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+            <button class="lb-delete-btn" id="lbDeleteBtn" title="Delete this photo">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 CST UNCENSORED | Made with ❤️ for our amazing squad</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
